@@ -60,7 +60,7 @@ class RegisterController extends Controller
 
         $this->guard()->login($user);
 
-        return redirect()->route('memo.index');
+        return redirect()->route('profile');
     }
 
     /**

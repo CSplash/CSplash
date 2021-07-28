@@ -2,5 +2,7 @@
     "/js/all.js": "/js/all.js",
     "/js/app.js": "/js/app.js",
     "/css/app.css": "/css/app.css",
-    "/js/enterInvalid.js": "/js/enterInvalid.js"
+    "/js/disableEnter.js": "/js/disableEnter.js",
+    "/js/infScroll.js": "/js/infScroll.js",
+    "/js/navClose.js": "/js/navClose.js"
 }

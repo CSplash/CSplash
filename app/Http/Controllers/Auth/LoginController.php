@@ -29,7 +29,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/memo';
+    protected $redirectTo = '/profile';
 
     /**
      * Validation at login

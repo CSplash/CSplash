@@ -14,4 +14,6 @@ const mix = require('laravel-mix');
 mix.js('resources/js/app.js', 'public/js')
     .js('resources/js/all.js', 'public/js')
     .js('resources/js/disableEnter.js', 'public/js')
+    .js('resources/js/navClose.js', 'public/js')
+    .js('resources/js/infScroll.js', 'public/js')
     .sass('resources/sass/app.scss', 'public/css');

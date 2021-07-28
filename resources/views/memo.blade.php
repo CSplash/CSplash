@@ -1,69 +1,82 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="h-100 bg-white">
-        <div class="row h-100 m-0 p-0">
-            <div class="side-bar col-2">
-                <div class="left-memo-menu d-flex justify-content-between">
-                    <div class="pl-2 pt-2">
-                        <a href="{{ route('user.mypage') }}" class="h5 text-light">Nxxion</a>
-                    </div>
-                    <div class="pr-1">
-                        <a href="{{ route('memo.add') }}" class="btn btn-dark">
-                            <img src="{{ asset('images/file-plus.svg') }}">
-                        </a>
-                        <a href="{{ route('memo.logout') }}" class="btn btn-dark">
-                            <img src="{{ asset('images/log-out.svg') }}">
-                        </a>
-                    </div>
+    <!-- All -->
+    <div class="csplash-wrapper">
+        <!-- side bar -->
+        <div class="nav-wrapper">
+            <!-- btn area -->
+            <div class="nav-top">
+                <a href="{{ route('profile') }}" class="nav-title">{{ config('app.name') }}</a>
+            </div>
+            <!-- search area -->
+            <form class="nav-search" action="{{ route('memo.search') }}">
+                <div class="search">
+                    <input type="text" name="key" class="search-inner" placeholder="Enter a title...">
                 </div>
-                <form class="form-horizontal pr-1" action="{{ route('memo.search') }}">
-                    <div class="search">
-                        <input type="text" name="key" class="form-control form-control-sm" placeholder="Enter a title...">
+            </form>
+            <!-- list area -->
+            <div class="nav-list">
+                @if ($memos->count() === 0)
+                    <div class="nothing-list">
+                        I could not find the note...
                     </div>
-                </form>
-                <div class="list-view p-0">
-                    @if ($memos->count() === 0)
-                        <div class="pl-1 pt-3 h5 text-secondary text-center">
-                            I could not find the note...
+                @endif
+                @foreach ($memos as $memo)
+                    <a href="{{ route('memo.select', ['id' => $memo->id]) }}" class="select-list @if ($select_memo) {{ $select_memo->id == $memo->id ? 'selected' : '' }} @endif " >
+                        <div class=" list-title">
+                        @if (empty($memo->title))
+                            Untitled
+                        @else
+                            {{ $memo->title }}
+                        @endif
                         </div>
-                    @endif
-                    @foreach ($memos as $memo)
-                        <a href="{{ route('memo.select', ['id' => $memo->id]) }}" class="list-color list-group-item list-group-item-action @if ($select_memo) {{ $select_memo->id == $memo->id ? 'selected' : '' }} @endif " >
-                                <div class=" d-flex w-100">
-                            <div class="list-title">
-                                @if (empty($memo->title))
-                                    Untitled
-                                @else
-                                    {{ $memo->title }}
-                                @endif
-                            </div>
-                </div>
-                </a>
+                    </a>
                 @endforeach
             </div>
-        </div>
-        <div class="mainArea col-10 h-100">
-            @if ($select_memo)
-                <form class="w-100 h-100" method="post">
-                    @csrf
-                    <input type="hidden" name="edit_id" value="{{ $select_memo->id }}" />
-                    <div id="memo-menu">
-                        <button class="menu-button">Favorite</button>
-                        <button type="submit" class="menu-button" formaction="{{ route('memo.delete') }}">Trash</button>
-                        <button type="submit" class="menu-button" formaction="{{ route('memo.update') }}">Update</button>
+            <div class="nav-footer">
+            <a href="{{ route('memo.add') }}" class="nav-btn">AddPage</a>
+            <a href="{{ route('memo.logout') }}" class="nav-btn">Logout</a>
+            </div>
+    </div>
+
+    <!-- text edit area -->
+    <div class="edit-wrapper">
+        @if ($select_memo)
+            <!-- form -->
+            <form class="edit-form" method="post">
+                @csrf
+                <!-- select -->
+                <input type="hidden" name="edit_id" value="{{ $select_memo->id }}" />
+                <!-- btn area -->
+                <div class="edit-top">
+                    <div class="nav-trigger">
+                        <div class="trigger"></div>
                     </div>
-                    <input type="text" id="memo-title" name="edit_title" placeholder="Untitled"
-                        value="{{ $select_memo->title }}" />
-                    <textarea id="memo-content" name="edit_content"
-                        placeholder="press any key to continue...">{{ $select_memo->content }}</textarea>
-                </form>
-            @else
-                <div class="mt-3 alert alert-info">
-                    Create a new memo or select one.
+                    <div class="edit-btn">
+                        <small>Created:{{ date('Y/m/d H:i', strtotime($memo->updated_at)) }}</small>
+                        <button type="submit" class="btn-2">Favorite</button>
+                        <button type="submit" class="btn-2" formaction="{{ route('memo.delete') }}">Trash</button>
+                        <button type="submit" class="btn-2" formaction="{{ route('memo.update') }}">Update</button>
+                    </div>
                 </div>
-            @endif
-        </div>
+                <!-- title -->
+                <div class="editer">
+                    <input type="text" class="memo-title" name="edit_title" placeholder="Untitled"
+                        value="{{ $select_memo->title }}" />
+                    <!-- editer -->
+                    <textarea class="memo-content" name="edit_content"
+                        placeholder="press any key to continue...">{{ $select_memo->content }}</textarea>
+                </div>
+            </form>
+        @else
+            <!-- nothing memo-->
+            <div class="alert-wrapper">
+                <div class="memo-alert">
+                    Create new memo or select one.
+                </div>
+            </div>
+        @endif
     </div>
-    </div>
+</div>
 @endsection

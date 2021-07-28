@@ -8,13 +8,13 @@
 /*--Bootstrap--*/
 @import "~bootstrap/scss/bootstrap";
 
-@import "user.scss";
+@import "auth.scss";
 @import "memo.scss";
 @import "search.scss";
 @import "mypage.scss";
 
 /*--Overall--*/
-#app{
+#app {
   height: 100%;
 }
 

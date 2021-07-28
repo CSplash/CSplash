@@ -6,6 +6,9 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\DeactiveController;
 use App\Http\Controllers\SearchController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UploadController;
+
 
 /*-- Auth --*/
 # Login
@@ -16,6 +19,14 @@ Route::post('/user/register', [RegisterController::class, 'register'])->name('us
 
 /*-- Only at Login --*/
 Route::group(['middleware' => ['auth']], function() {
+        /*-- MyPage --*/
+        Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
+        # Delete Users
+        Route::get('/deactive', [DeactiveController::class, 'showDeactiveForm'])->name('deactive.form');
+        Route::post('/deactive', [DeactiveController::class, 'deactive'])->name('deactive');
+
+        Route::post('/profile', [ProfileController::class, 'store'])->name('profile.image');
+
     /*-- Home --*/
     Route::get('/memo', [MemoController::class, 'index'])->name('memo.index');
         # Add notes
@@ -31,11 +42,9 @@ Route::group(['middleware' => ['auth']], function() {
         # Search notes
         Route::get('/memo/search', [SearchController::class, 'index'])->name('memo.search');
 
-    /*-- MyPage --*/
-    Route::view('/user/mypage', 'mypage')->name('user.mypage');
-        # Delete Users
-        Route::get('/deactive', [DeactiveController::class, 'showDeactiveForm'])->name('deactive.form');
-        Route::post('/deactive', [DeactiveController::class, 'deactive'])->name('deactive');
 });
+
+Route::get('/upload', [UploadController::class, 'index'])->name('upload.index');
+Route::post('/upload', [UploadController::class, 'upload'])->name('upload.post');
 
 Auth::routes();

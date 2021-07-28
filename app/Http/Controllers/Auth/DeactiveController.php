@@ -10,19 +10,19 @@ use App\Models\User;
 
 class DeactiveController extends Controller
 {
-     public function __construct()
-     {
-         $this->middleware('auth');
-     }
+  public function __construct()
+  {
+    $this->middleware('auth');
+  }
 
-     public function showDeactiveForm()
-     {
-        return view('auth/deactive');
-     }
+  public function showDeactiveForm()
+  {
+    return view('auth/deactive');
+  }
 
-     public function deactive()
-     {
-       User::find(Auth::id())->delete();
-       return redirect()->route('login.index');
-     }
+  public function deactive()
+  {
+    User::find(Auth::id())->delete();
+    return redirect()->route('login.index');
+  }
 }
