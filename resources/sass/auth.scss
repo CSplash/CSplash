@@ -1,0 +1,90 @@
+/*--Auth--*/
+.auth-wrapper{
+  height: 100%;
+}
+
+.auth{
+  height: 60%;
+  width: 45%;
+  position: absolute;
+	top: 15%;
+  left: 27%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.auth-error{
+  width: 100%;
+  background-color: rgb(255, 103, 103);
+  opacity:0.7;
+  border-radius: 6px;
+  margin-bottom: 10px;
+}
+
+.auth-title{
+  height: 100%;
+  font-size: 60px;
+  background: floralwhite;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-family: 'Fredericka the Great', cursive;
+}
+
+.auth-form-wrapper{
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-partition{
+  display: block;
+  padding: 1px;
+}
+
+.form-field1{
+  width:100%;
+  display: block;
+  border:none;
+  border-radius: 0.25rem;
+  padding: 4px;
+}
+
+.form-field1:focus {
+  outline: none;
+  }
+
+.sub-btn{
+  display: block;
+  width: 100%;
+  border: none;
+  background: #38c172;
+  color: white;
+  border-radius: 0.25rem;
+  padding: 5px;
+}
+.sub-btn:hover{
+  background: #2fa360;
+}
+
+.auth-callout{
+  padding-top: 3px;
+}
+
+.callout-msg{
+  display: flex;
+  justify-content: center;
+  color: white;
+  font-size: 15px;
+}
+
+.callout-link{
+  display: flex;
+  justify-content: center;
+}
+
+.link-txt{
+  font-size: 15px;
+}

@@ -1,0 +1,71 @@
+.search-wrapper {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .search-card {
+    width: 80%;
+    height: 90%;
+    margin: 0 auto;
+    box-shadow: 0px 10px 20px -9px rgba(0, 0, 0, 0.5);
+    opacity: 0.92;
+    background-color: white;
+    border-radius: 5px;
+  }
+  .search-app-title{
+    height: 15%;
+    min-height: 55px;
+    font-size: 300%;
+    background: rgb(0, 0, 0);
+    border-bottom: solid 1px #aaaaaa;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-family: 'Fredericka the Great', cursive;
+    text-align: center;
+  }
+
+  .search-content{
+    height: 85%;
+    display: grid;
+    overflow-y:scroll;
+    grid-template-columns: repeat(3,calc(100% / 3));
+    grid-auto-rows: 200px;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .search-content::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .search-content-txt{
+    margin: 2.5px;
+    padding:10px;
+    background:#505050;
+  }
+  .search-content-txt:hover{
+    background:rgb(151, 151, 151);
+  }
+
+
+  .search-title,
+  .search-sentence{
+    color:white;
+    overflow:hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-family: 'Noto Serif JP', serif;
+  }
+  .search-title{
+    height: 20%;
+    font-size: 115%;
+  }
+
+  .search-sentence{
+    height: 80%;
+    font-size: 100%;
+  }
+  .search-sentence::hover{
+    text-decoration: none;
+  }
